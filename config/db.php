@@ -2,7 +2,7 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'pgsql:host=localhost;port=5432;dbname=',
+    'dsn' => 'pgsql:host=localhost;port=5432;dbname=lenvendo-test-task',
 //    'dsn' => 'mysql:host=localhost;port=3306;dbname=',
     'username' => 'dev',
     'password' => '123456',
