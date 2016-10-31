@@ -8,7 +8,7 @@ use yii\helpers\Html;
 /* @var $drawForm app\models\DrawSaveForm */
 
 $this->title = 'Создание шедевра';
-$this->params['breadcrumbs'][] = ['label' => 'Изображения', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Галерея', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="image-create">

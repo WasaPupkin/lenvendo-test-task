@@ -134,7 +134,9 @@ class DrawSaveForm extends Model
     {
         if(!$this->Model->isNewRecord && !$this->Model->validatePassword($this->password)) {
             $this->addError('password', 'Пароль не подходит');
+            return false;
         }
+        return true;
     }
 
     public function save(Image $Model)

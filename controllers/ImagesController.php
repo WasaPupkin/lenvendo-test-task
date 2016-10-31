@@ -6,6 +6,7 @@ use app\models\DrawSaveForm;
 use Yii;
 use app\models\Image;
 use yii\data\ActiveDataProvider;
+use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -37,17 +38,6 @@ class ImagesController extends Controller
      * @return mixed
      */
     public function actionIndex()
-    {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Image::find(),
-        ]);
-
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    public function actionGallery()
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Image::find(),
@@ -131,19 +121,6 @@ class ImagesController extends Controller
     }
 
     /**
-     * Deletes an existing Image model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
-    }
-
-    /**
      * Finds the Image model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
@@ -157,5 +134,35 @@ class ImagesController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionAuth($id)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $model = $this->findModel($id);
+        $password = Yii::$app->request->post('password');
+
+        if(!$password){
+            throw new BadRequestHttpException('Password required');
+        }
+
+        $form = new DrawSaveForm();
+        $form->initFromImage($model);
+
+        $form->password = $password;
+
+        if(!$form->validatePassword()) {
+            $errors = $form->getErrors('password');
+            return [
+                'success' => false,
+                'message' => array_shift($errors),
+            ];
+        }else{
+            return [
+                'success' => true,
+            ];
+        }
+
     }
 }

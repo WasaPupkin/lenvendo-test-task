@@ -15,7 +15,7 @@ use yii\helpers\Html;
         <div class="pull-right">
             <?= Html::a('<i class="glyphicon glyphicon-pencil"></i>', \yii\helpers\Url::to(['update', 'id' => $key], ['class' => 'btn'])) ?>
         </div>
-        <?= Html::a(Html::img($model->getUrl(), ['width' => 300]), \yii\helpers\Url::to(['view', 'id' => $key])) ?>
+        <?= Html::a(Html::img($model->getUrl(), ['width' => 300]), \yii\helpers\Url::to(['update', 'id' => $key])) ?>
         <div class="caption">
             Добавлено
             <?= Yii::$app->getFormatter()->asDatetime($model->created, 'dd.MM.yyyy HH:mm')?>
