@@ -47,6 +47,20 @@ class ImagesController extends Controller
         ]);
     }
 
+    public function actionGallery()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Image::find(),
+            'sort' => [
+                'defaultOrder' => ['image_id' => SORT_DESC],
+            ],
+        ]);
+
+        return $this->render('gallery', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     /**
      * Displays a single Image model.
      * @param integer $id

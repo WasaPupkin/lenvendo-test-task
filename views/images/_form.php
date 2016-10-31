@@ -29,7 +29,7 @@ $canvasId = $formId.'canvas';
                 'width' => DrawSaveForm::IMAGE_WIDTH,
                 'height' => DrawSaveForm::IMAGE_HEIGHT,
                 'class' => 'canvas',
-                'style' => "background: url({$drawForm->canvas}) no-repeat center center;"
+                'style' => "background: url({$model->body}) no-repeat center center;"
             ])
             ?>
         </div>

@@ -15,11 +15,6 @@ $config = [
         'cache' => [
 //            'class' => 'yii\caching\DummyCache',
             'class' => 'yii\redis\Cache',
-            'redis' => [
-                'hostname' => 'localhost',
-                'port' => 6379,
-                'database' => 4,
-            ]
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -34,6 +29,7 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
+        'redis' => require(__DIR__ . '/redis.php'),
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,

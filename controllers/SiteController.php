@@ -29,7 +29,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index', [
-            'url' => Url::toRoute('/user/list')
+            'url' => Url::toRoute('/images/index')
         ]);
     }
 
